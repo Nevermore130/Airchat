@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">dengluzhuce</string>
+    <string name="validCodeError">验证码错误</string>
+    <string name="goon">继续</string>
+</resources>

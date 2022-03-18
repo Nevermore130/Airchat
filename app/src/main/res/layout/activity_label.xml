@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fadingEdge="vertical"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true"
+    >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical">
+    <RelativeLayout
+
+            android:id="@+id/up"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+
+
+            <TextView
+                android:layout_width="168dp"
+                android:layout_height="68dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="146dp"
+                android:textSize="24sp"
+                android:textColor="@color/black"
+                android:text="让想找到你的人快速找到你！"/>
+            <TextView
+                android:id="@+id/text2"
+                android:layout_width="200dp"
+                android:layout_height="18dp"
+                android:layout_marginLeft="33dp"
+                android:layout_marginTop="224dp"
+                android:text="你有什么特征？选择一些标签吧👇"
+
+                android:textColor="#888888"
+                android:textSize="13sp"
+                android:textStyle="normal"/>
+
+            <TextView
+                android:id="@+id/skip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="323dp"
+                android:layout_marginTop="73dp"
+                android:text="跳过"
+                android:textColor="@color/gray888888"
+                android:textSize="14sp" />
+        </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="33dp"
+        android:layout_marginRight="10dp"
+
+        android:orientation="vertical"
+
+        >
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:text="年级"
+                android:textColor="@color/color8888888"
+                android:textSize="14sp" />
+            <com.example.dengluzhuce.FlowLayout
+
+                android:id="@+id/flow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="-28dp"
+                android:background="#FFFFFF">
+            </com.example.dengluzhuce.FlowLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp">
+            <TextView
+                android:id="@+id/title2"
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                android:text="肤色"
+                android:textColor="@color/color8888888"
+                android:textSize="14sp" />
+            <com.example.dengluzhuce.FlowLayout
+                android:id="@+id/flow2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="-28dp"
+                android:background="#FFFFFF"
+                >
+            </com.example.dengluzhuce.FlowLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp">
+
+            <TextView
+                android:id="@+id/title3"
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                android:text="发型"
+                android:textColor="@color/color8888888"
+                android:textSize="14sp" />
+
+            <com.example.dengluzhuce.FlowLayout
+                android:id="@+id/flow3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="-28dp">
+            </com.example.dengluzhuce.FlowLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp">
+            <TextView
+                android:id="@+id/title4"
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                android:text="身材"
+                android:textColor="@color/color8888888"
+                android:textSize="14sp" />
+            <com.example.dengluzhuce.FlowLayout
+                android:id="@+id/flow4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="-28dp">
+            </com.example.dengluzhuce.FlowLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:layout_marginTop="32dp">
+            <TextView
+                android:id="@+id/title5"
+                android:layout_width="28dp"
+                android:layout_height="20dp"
+                android:text="装饰"
+                android:textColor="@color/color8888888"
+                android:textSize="14sp"
+
+                />
+            <com.example.dengluzhuce.FlowLayout
+                android:id="@+id/flow5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:layout_marginTop="30dp"
+                android:layout_marginLeft="-28dp"
+                >
+            </com.example.dengluzhuce.FlowLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+    <Button
+        android:id="@+id/goOnButton"
+        android:layout_width="285dp"
+        android:layout_height="48dp"
+
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/button_shape2"
+        android:text="@string/goon"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:textColor="@color/grayc1"
+        android:textSize="16sp"
+        android:enabled="false"
+        android:layout_below="@id/linearLayout1"/>
+</LinearLayout>
+
+
+
+
+</ScrollView>

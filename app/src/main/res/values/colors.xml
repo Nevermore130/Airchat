@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="press">#E2B000</color>
+    <color name="beforePress">#FFC600</color>
+    <color name="useragree">#FFC600</color>
+    <color name="checkbutton">#F2F2F2</color>
+    <color name="getValidCode">#C1C1C1</color>
+    <color name="cursor">#FFC600</color>
+    <color name="white">#FFFFFF</color>
+    <color name="bottomcolor">#EAEAEA</color>
+    <color name="validCode">#F6F6F6</color>
+    <color name="progressbar">#FFC600</color>
+    <color name="validnum">#222222</color>
+    <color name="sex_uncheck">#F6F6F6</color>
+    <color name="sex_check">#FFC600</color>
+    <color name="gray_text">#C1C1C1</color>
+    <color name="label_color">#F8F8F8</color>
+    <color name="add">#888888</color>
+    <color name="f2gray">#F2F2F2</color>
+    <color name="black">#222222</color>
+    <color name="gray888888">#888888</color>
+    <color name="grayc1">#C1C1C1</color>
+    <color name="transparent">#00000000</color>
+    <color name="color8888888">#888888</color>
+    <color name="color222222">#222222</color>
+    <color name="label_check">#000000</color>
+</resources>

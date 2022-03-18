@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ImageView
+        android:id="@+id/touxiang"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:layout_marginTop="180dp"
+        android:layout_centerHorizontal="true"
+        android:background="#E5E5E5" />
+
+
+
+    <Button
+        android:id="@+id/buttonOfLogin"
+        android:layout_width="285dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="550dp"
+        android:fontFamily=""
+        android:background="@drawable/button_selector"
+        android:text="手机号登录"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/agreeItem"
+
+        android:layout_width="311dp"
+        android:layout_height="24dp"
+        android:text="登录注册即表示同意《用户协议》及《隐私政策》"
+        android:textStyle="normal"
+
+        android:textSize="12sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/buttonOfLogin"
+        android:gravity="center_horizontal|center_vertical"/>
+
+</RelativeLayout>
