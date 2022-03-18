@@ -13,7 +13,7 @@ object AirChatPhoto {
     fun selector(
         activity: Activity,
         isCountAble: Boolean = false,
-        onSelectListener: PhotoSelectListener
+        onSelectListener: AirPhotoSelectListener
     ) {
         Matisse.from(activity)
             .choose(MimeType.ofImage(), false)
@@ -57,6 +57,6 @@ object AirChatPhoto {
 }
 
 
-interface PhotoSelectListener {
+interface AirPhotoSelectListener {
     fun onSelected(uriList: MutableList<Uri>, pathList: MutableList<String>)
 }

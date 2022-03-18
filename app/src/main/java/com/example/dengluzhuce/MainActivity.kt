@@ -18,19 +18,10 @@ import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
 import android.view.View
-import android.view.WindowInsets
-//import android.view.WindowInsetsController
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
-import androidx.core.app.ComponentActivity
-import androidx.core.app.ComponentActivity.ExtraData
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.telephony.TelephonyManager
-import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.text.underline
 import com.device.id.DeviceIdUtils
 
 
@@ -42,17 +33,14 @@ class MainActivity : BaseActivity() {
     private val PERMISSION_REQUEST_CODE = 0
     private var isRequireCheck: Boolean = true
     private var permissionListTmp = arrayOf(permissionInternet)
-    @Suppress("DEPRECATION")
+
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         val IMEL=DeviceIdUtils.getDeviceId(this@MainActivity,useMd5 = false)
-
             Toast.makeText(this, "IMEI number: " + IMEL,
                 Toast.LENGTH_LONG).show()
-
-
         val spanable = SpannableStringBuilder(agreeItem.text)
         agreeItem.setMovementMethod(LinkMovementMethod.getInstance())
 
