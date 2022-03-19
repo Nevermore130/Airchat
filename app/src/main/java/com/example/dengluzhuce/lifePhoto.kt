@@ -19,7 +19,7 @@ class lifePhoto : BaseActivity() {
     private val permissionCamera = Manifest.permission.CAMERA
     private val permissionRead = Manifest.permission.READ_EXTERNAL_STORAGE
     private val permissionWrite = Manifest.permission.WRITE_EXTERNAL_STORAGE
-    private val PermissionList = arrayOf(permissionCamera,permissionRead,permissionWrite)
+    private val PermissionList = arrayOf(permissionCamera, permissionRead, permissionWrite)
     private var isRequireCheck: Boolean = true
     private val PERMISSION_REQUEST_CODE = 1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class lifePhoto : BaseActivity() {
 
 
         back_button.setOnClickListener {
-            val intent = Intent(thisActivity,Label::class.java)
+            val intent = Intent(thisActivity, Label::class.java)
             startActivity(intent)
         }
 
@@ -38,20 +38,23 @@ class lifePhoto : BaseActivity() {
     override fun onResume() {
         super.onResume()
         mPermissionsChecker = PermissionChecker(thisActivity)
-        if(!mPermissionsChecker!!.lacksPermissions(PermissionList))
-        {
+        if (!mPermissionsChecker!!.lacksPermissions(PermissionList)) {
 
-            imageSelect.setOnClickListener{
-                AirChatPhoto.selector(thisActivity,false,object :AirPhotoSelectListener{
-                    override fun onSelected(uriList: MutableList<Uri>, pathList: MutableList<String>) {
-                    }
+            imageSelect.setOnClickListener {
+                AirChatPhoto.selector(
+                    thisActivity,
+                    false,
+                    object : AirPhotoSelectListener {
+                        override fun onSelected(
+                            uriList: MutableList<Uri>,
+                            pathList: MutableList<String>
+                        ) {
+                        }
 
-                })
+                    })
             }
 
-        }
-
-        else {
+        } else {
             // 缺少权限时, 进入权限配置页面
             if (isRequireCheck) {
                 ActivityCompat.requestPermissions(
@@ -67,6 +70,7 @@ class lifePhoto : BaseActivity() {
         }
 
     }
+
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<out String>,
@@ -75,27 +79,34 @@ class lifePhoto : BaseActivity() {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
         if (requestCode == PERMISSION_REQUEST_CODE && allPermissionOk(grantResults)) {
-            imageSelect.setOnClickListener{
-                AirChatPhoto.selector(thisActivity,false,object :AirPhotoSelectListener{
-                    override fun onSelected(uriList: MutableList<Uri>, pathList: MutableList<String>) {
-                    }
+            imageSelect.setOnClickListener {
+                AirChatPhoto.selector(
+                    thisActivity,
+                    false,
+                    object : AirPhotoSelectListener {
+                        override fun onSelected(
+                            uriList: MutableList<Uri>,
+                            pathList: MutableList<String>
+                        ) {
+                        }
 
-                })
+                    })
             }
-        }
-        else{
+        } else {
             isRequireCheck = false
 
         }
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            23->if(resultCode==RESULT_OK){
-                val uris : List<Uri> = AirChatPhoto.obtainResult(data!!)
+        when (requestCode) {
+            23 -> if (resultCode == RESULT_OK) {
+                val uris: List<Uri> = AirChatPhoto.obtainResult(data!!)
             }
         }
     }
+
     private fun showMissingPermissionDialog() {
         val builder = AlertDialog.Builder(thisActivity)
         builder.setTitle("提醒")
@@ -108,9 +119,12 @@ class lifePhoto : BaseActivity() {
         builder.setPositiveButton("设置") { _, _ -> }
         builder.show()
     }
-    private fun allPermissionOk(permissionResiultList:IntArray):Boolean{
-        for(permissionResult in permissionResiultList){
-            if (permissionResult != PackageManager.PERMISSION_GRANTED){ return false }
+
+    private fun allPermissionOk(permissionResiultList: IntArray): Boolean {
+        for (permissionResult in permissionResiultList) {
+            if (permissionResult != PackageManager.PERMISSION_GRANTED) {
+                return false
+            }
         }
         return true
     }

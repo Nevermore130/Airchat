@@ -1,9 +1,11 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-    </style>
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" />
 
+    <style name="AppTheme_Light" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="color">#E2B000</item>
+    </style>
 
 
 </resources>
