@@ -1,9 +1,6 @@
 package com.example.dengluzhuce
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
 import android.text.Spannable
 import android.text.SpannableStringBuilder
 import android.text.TextPaint
@@ -17,14 +14,9 @@ import retrofit2.Callback
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import com.google.gson.JsonArray
-import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_label.*
-import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Call
 import retrofit2.Response
-import java.math.BigDecimal.ONE
-
-import kotlin.math.log
 
 class Label : BaseActivity() {
     private var contentList:MutableList<String>?= arrayListOf()
@@ -120,7 +112,7 @@ class Label : BaseActivity() {
             object : ClickableSpan() {
 
                 override fun onClick(v: View) {
-                    val intent = Intent(thisActivity, lifePhoto::class.java)
+                    val intent = Intent(thisActivity, LifePhotoActivity::class.java)
                     startActivity(intent)
                 }
 
@@ -150,7 +142,7 @@ class Label : BaseActivity() {
         goOnButton.setOnClickListener {
 
             val idString=setId()
-            val intent = Intent(thisActivity,lifePhoto::class.java)
+            val intent = Intent(thisActivity,LifePhotoActivity::class.java)
             intent.putExtra("idString",idString)
             startActivity(intent)
         }

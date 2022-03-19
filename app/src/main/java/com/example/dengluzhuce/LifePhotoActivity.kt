@@ -9,11 +9,12 @@ import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
 import com.airchat.matisse.AirChatPhoto
 import com.airchat.matisse.AirPhotoSelectListener
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_life_photo.*
 import kotlinx.android.synthetic.main.activity_num_validation.*
 import kotlinx.android.synthetic.main.activity_num_validation.back_button
 
-class lifePhoto : BaseActivity() {
+class LifePhotoActivity : BaseActivity() {
     private val thisActivity = this
     private var mPermissionsChecker: PermissionChecker? = null
     private val permissionCamera = Manifest.permission.CAMERA
@@ -43,7 +44,7 @@ class lifePhoto : BaseActivity() {
             imageSelect.setOnClickListener {
                 AirChatPhoto.selector(
                     thisActivity,
-                    false,
+                    1,
                     object : AirPhotoSelectListener {
                         override fun onSelected(
                             uriList: MutableList<Uri>,
@@ -82,7 +83,7 @@ class lifePhoto : BaseActivity() {
             imageSelect.setOnClickListener {
                 AirChatPhoto.selector(
                     thisActivity,
-                    false,
+                    1,
                     object : AirPhotoSelectListener {
                         override fun onSelected(
                             uriList: MutableList<Uri>,
@@ -103,6 +104,12 @@ class lifePhoto : BaseActivity() {
         when (requestCode) {
             23 -> if (resultCode == RESULT_OK) {
                 val uris: List<Uri> = AirChatPhoto.obtainResult(data!!)
+                uris.forEach {
+                    Glide.with(thisActivity)
+                        .load(it)
+                        .centerCrop()
+                        .into(imageSelect);
+                }
             }
         }
     }

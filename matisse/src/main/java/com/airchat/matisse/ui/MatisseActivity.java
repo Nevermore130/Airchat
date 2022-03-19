@@ -26,6 +26,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.ActionBar;
@@ -59,6 +60,7 @@ import com.airchat.matisse.internal.utils.PathUtils;
 import com.airchat.matisse.internal.utils.PhotoMetadataUtils;
 
 import com.airchat.matisse.internal.utils.SingleMediaScanner;
+
 import java.util.ArrayList;
 
 /**
@@ -239,7 +241,8 @@ public class MatisseActivity extends AppCompatActivity implements
                         Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
 
             new SingleMediaScanner(this.getApplicationContext(), path, new SingleMediaScanner.ScanListener() {
-                @Override public void onScanFinish() {
+                @Override
+                public void onScanFinish() {
                     Log.i("SingleMediaScanner", "scan finish!");
                 }
             });
@@ -394,6 +397,10 @@ public class MatisseActivity extends AppCompatActivity implements
             mContainer.setVisibility(View.VISIBLE);
             mEmptyView.setVisibility(View.GONE);
             Fragment fragment = MediaSelectionFragment.newInstance(album);
+            Fragment oldFragment = getSupportFragmentManager().findFragmentByTag(MediaSelectionFragment.class.getSimpleName());
+            if (oldFragment instanceof MediaSelectionFragment) {
+                ((MediaSelectionFragment) oldFragment).destroyManagerLoader();
+            }
             getSupportFragmentManager()
                     .beginTransaction()
                     .replace(R.id.container, fragment, MediaSelectionFragment.class.getSimpleName())

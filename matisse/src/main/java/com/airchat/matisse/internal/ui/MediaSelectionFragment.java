@@ -119,6 +119,7 @@ public class MediaSelectionFragment extends Fragment implements
         mAlbumMediaCollection.onDestroy();
     }
 
+
     public void refreshMediaGrid() {
         mAdapter.notifyDataSetChanged();
     }
@@ -151,6 +152,10 @@ public class MediaSelectionFragment extends Fragment implements
             mOnMediaClickListener.onMediaClick((Album) getArguments().getParcelable(EXTRA_ALBUM),
                     item, adapterPosition);
         }
+    }
+
+    public void destroyManagerLoader(){
+        mAlbumMediaCollection.onDestroy();
     }
 
     public interface SelectionProvider {

@@ -12,21 +12,21 @@ object AirChatPhoto {
 
     fun selector(
         activity: Activity,
-        isCountAble: Boolean = false,
+        count: Int,
         onSelectListener: AirPhotoSelectListener
     ) {
         Matisse.from(activity)
             .choose(MimeType.ofImage(), false)
-            .countable(isCountAble)
+            .countable(true)
             .capture(true)
             .captureStrategy(
                 CaptureStrategy(
                     true,
-                    "com.airchat.matisse.fileprovider",
-                    "airchat_photo"
+                    "com.example.dengluzhuce",
+                    "test"
                 )
             )
-            .maxSelectable(9)
+            .maxSelectable(count)
             .gridExpectedSize(
                 activity.resources.getDimensionPixelSize(R.dimen.grid_expected_size)
             )

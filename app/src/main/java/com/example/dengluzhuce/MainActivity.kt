@@ -1,14 +1,8 @@
 package com.example.dengluzhuce
 
 import android.Manifest
-import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.content.res.Resources
-import android.graphics.Color
-import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.requestPermissions
 import android.os.Bundle
 import android.text.Spannable
@@ -114,7 +108,7 @@ class MainActivity : BaseActivity() {
             {
 
 //                val intent = Intent(activity, Num_validation::class.java)
-                val intent = Intent(activity, lifePhoto::class.java)
+                val intent = Intent(activity, LifePhotoActivity::class.java)
                 startActivity(intent)
             }
             else {
