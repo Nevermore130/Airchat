@@ -9,7 +9,7 @@ class PermissionChecker(context: Context) {
     private var mContext: Context = context.applicationContext
 
     // 判断权限集合
-    fun lacksPermissions(vararg permissions: String): Boolean {
+    fun lacksPermissions( permissions: Array<String> ): Boolean {
         for (permission in permissions) {
             if (lacksPermission(permission)) {
                 return true

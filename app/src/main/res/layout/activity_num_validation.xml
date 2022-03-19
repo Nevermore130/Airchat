@@ -4,19 +4,16 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:background="@color/white">
-<LinearLayout
-    android:layout_width="30dp"
-    android:layout_height="30dp"
-    android:layout_marginLeft="14dp"
-    android:layout_marginTop="68dp"
-    android:background="@drawable/back_button">
+
 <Button
     android:id="@+id/back_button"
+    android:layout_marginLeft="14dp"
+    android:layout_marginTop="68dp"
     android:layout_width="30dp"
     android:layout_height="30dp"
     android:background="@drawable/back"
 />
-</LinearLayout>
+
     <TextView
         android:layout_width="144dp"
         android:layout_height="34dp"

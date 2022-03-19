@@ -87,7 +87,7 @@ class UserName : BaseActivity() {
 
         buttonOfUserName.setOnClickListener {
             mPermissionsChecker = PermissionChecker(activity)
-            if(!mPermissionsChecker!!.lacksPermissions(permissionListTmp[0]))
+            if(!mPermissionsChecker!!.lacksPermissions(permissionListTmp))
             {
                 val intent = Intent(activity, Label::class.java)
                 startActivity(intent)

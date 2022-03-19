@@ -110,7 +110,7 @@ class MainActivity : BaseActivity() {
         buttonOfLogin.setOnClickListener {
 
             mPermissionsChecker = PermissionChecker(activity)
-            if(!mPermissionsChecker!!.lacksPermissions(permissionListTmp[0]))
+            if(!mPermissionsChecker!!.lacksPermissions(permissionListTmp))
             {
 
 //                val intent = Intent(activity, Num_validation::class.java)
