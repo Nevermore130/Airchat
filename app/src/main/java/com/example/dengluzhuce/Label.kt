@@ -315,8 +315,9 @@ class Label : BaseActivity() {
     private fun setId():String{
         for (item in contentList!!){
 
-            var id:String? = idMap!![item]
-            idList!!.add(id!!)
+            if(idMap!![item]!=null) { idList!!.add(idMap!![item]!!)
+
+            }
         }
 
      return idList.toString().replace("[","").replace("]","").replace(" ","")

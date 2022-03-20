@@ -7,11 +7,15 @@
 
     <TextView
         android:id="@+id/custom_toast_message"
-        android:layout_width="114dp"
+        android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:background="@drawable/toastborder"
         android:contentDescription="To"
         android:text="@string/validCodeError"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:textSize="14sp"
         android:gravity="center"/>
 </LinearLayout>

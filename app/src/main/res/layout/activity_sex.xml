@@ -28,17 +28,17 @@
 
     <RadioGroup
         android:id="@+id/checkbox"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"
+        android:layout_width="280dp"
+        android:layout_height="128dp"
+        android:layout_below="@+id/text2"
+        android:layout_marginTop="64dp"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/boy"
             android:layout_width="128dp"
             android:layout_height="128dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="290dp"
             android:background="@drawable/sex_selector"
             android:button="@null"
             android:gravity="center"
@@ -57,7 +57,6 @@
             android:layout_width="128dp"
             android:layout_height="128dp"
             android:layout_marginLeft="24dp"
-            android:layout_marginTop="290dp"
             android:background="@drawable/sex_selector"
             android:button="@null"
             android:gravity="center"

@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">dengluzhuce</string>
-    <string name="validCodeError">验证码错误</string>
-    <string name="goon">继续</string>
+    <string name="app_name" translatable="false">dengluzhuce</string>
+    <string name="validCodeError" translatable="false">验证码错误</string>
+    <string name="validCodeSendSuccess" translatable="false">验证码发送成功</string>
+    <string name="validCodeSendFailure" translatable="false">验证码发送失败</string>
+    <string name="goon" translatable="false">继续</string>
 </resources>

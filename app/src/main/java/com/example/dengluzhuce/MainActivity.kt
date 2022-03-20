@@ -1,6 +1,7 @@
 package com.example.dengluzhuce
 
 import android.Manifest
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat.requestPermissions
@@ -11,12 +12,18 @@ import android.text.TextPaint
 import android.text.method.LinkMovementMethod
 import android.text.style.ClickableSpan
 import android.text.style.ForegroundColorSpan
+import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import kotlinx.android.synthetic.main.activity_main.*
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.device.id.DeviceIdUtils
+import retrofit2.Call
+import retrofit2.Response
+import retrofit2.Callback
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 
 class MainActivity : BaseActivity() {
@@ -32,9 +39,12 @@ class MainActivity : BaseActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val IMEL=DeviceIdUtils.getDeviceId(this@MainActivity,useMd5 = false)
-            Toast.makeText(this, "IMEI number: " + IMEL,
-                Toast.LENGTH_LONG).show()
+
+        val IMEL = DeviceIdUtils.getDeviceId(this@MainActivity, useMd5 = false)
+        Toast.makeText(
+            this, "IMEI number: " + IMEL,
+            Toast.LENGTH_LONG
+        ).show()
         val spanable = SpannableStringBuilder(agreeItem.text)
         agreeItem.setMovementMethod(LinkMovementMethod.getInstance())
 
@@ -45,10 +55,11 @@ class MainActivity : BaseActivity() {
                     val intent = Intent(activity, protocol::class.java)
                     startActivity(intent)
                 }
+
                 override fun updateDrawState(ds: TextPaint) {
                     super.updateDrawState(ds)
-                    ds.isUnderlineText=false
-                    agreeItem.highlightColor=resources.getColor(R.color.transparent)
+                    ds.isUnderlineText = false
+                    agreeItem.highlightColor = resources.getColor(R.color.transparent)
                 }
 
             },
@@ -61,12 +72,13 @@ class MainActivity : BaseActivity() {
 
             override fun onClick(v: View) {
 
-                val intent = Intent(activity,privacy::class.java)
+                val intent = Intent(activity, privacy::class.java)
                 startActivity(intent)
             }
+
             override fun updateDrawState(ds: TextPaint) {
                 super.updateDrawState(ds)
-                ds.isUnderlineText=false
+                ds.isUnderlineText = false
             }
 
         }, agreeItem.text.length - 6, agreeItem.text.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -104,21 +116,19 @@ class MainActivity : BaseActivity() {
         buttonOfLogin.setOnClickListener {
 
             mPermissionsChecker = PermissionChecker(activity)
-            if(!mPermissionsChecker!!.lacksPermissions(permissionListTmp))
-            {
+            if (!mPermissionsChecker!!.lacksPermissions(permissionListTmp)) {
 
-//                val intent = Intent(activity, Num_validation::class.java)
-                val intent = Intent(activity, LifePhotoActivity::class.java)
+                val intent = Intent(activity, Num_validation::class.java)
+//                val intent = Intent(activity, LifePhotoActivity::class.java)
                 startActivity(intent)
-            }
-            else {
+            } else {
                 // 缺少权限时, 进入权限配置页面
                 if (isRequireCheck) {
-                        requestPermissions(activity, permissionListTmp, PERMISSION_REQUEST_CODE)
+                    requestPermissions(activity, permissionListTmp, PERMISSION_REQUEST_CODE)
 
 
                 } else {
-                        showMissingPermissionDialog()
+                    showMissingPermissionDialog()
                 }
             }
 
@@ -133,16 +143,15 @@ class MainActivity : BaseActivity() {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
-            if (requestCode == PERMISSION_REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                val intent = Intent(activity, Num_validation::class.java)
+        if (requestCode == PERMISSION_REQUEST_CODE && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            val intent = Intent(activity, Num_validation::class.java)
+            startActivity(intent)
+        } else {
+            isRequireCheck = false
 
-                startActivity(intent)
-            }
-        else{
-                isRequireCheck = false
-
-            }
         }
+    }
+
     private fun showMissingPermissionDialog() {
         val builder = AlertDialog.Builder(activity)
         builder.setTitle("提醒")
@@ -155,7 +164,9 @@ class MainActivity : BaseActivity() {
         builder.setPositiveButton("设置") { _, _ -> }
         builder.show()
     }
-    }
+
+
+}
 
 
 

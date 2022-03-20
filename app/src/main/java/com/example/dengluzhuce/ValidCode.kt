@@ -1,5 +1,6 @@
 package com.example.dengluzhuce
 
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -13,6 +14,7 @@ import androidx.annotation.CallSuper
 import kotlinx.android.synthetic.main.activity_valid_code.*
 import android.view.Gravity
 import android.view.KeyEvent
+import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_num_validation.*
 import kotlinx.android.synthetic.main.activity_valid_code.back_button
@@ -40,20 +42,20 @@ class ValidCode : BaseActivity() {
         val phoneNumber  = intent.getStringExtra("phoneNum").toString()
 
         val verificationCodeService = ServiceCreator.create(VerificationCodeService::class.java)
-        verificationCodeService.getVerificationCode("$phoneNumber",1).enqueue(object :Callback<VerificationCode>{
+        verificationCodeService.getVerificationCode(phoneNumber,1).enqueue(object :Callback<VerificationCode>{
             override fun onResponse(
                 call: Call<VerificationCode>,
                 response: Response<VerificationCode>
             ) {
 
-
+                msgToast(resources.getString(R.string.validCodeSendSuccess))
             }
 
             override fun onFailure(
                 call: Call<VerificationCode>,
                 t: Throwable
             ) {
-                finish()
+                msgToast(resources.getString(R.string.validCodeSendFailure))
                 t.printStackTrace()
             }
         })
@@ -78,6 +80,23 @@ class ValidCode : BaseActivity() {
         reGetValidCode.setOnClickListener {
             timer = TimerUnit(reGetValidCode,mContext)
             timer?.startTime()
+            verificationCodeService.getVerificationCode(phoneNumber,1).enqueue(object :Callback<VerificationCode>{
+                override fun onResponse(
+                    call: Call<VerificationCode>,
+                    response: Response<VerificationCode>
+                ) {
+
+                    msgToast(resources.getString(R.string.validCodeSendSuccess))
+                }
+
+                override fun onFailure(
+                    call: Call<VerificationCode>,
+                    t: Throwable
+                ) {
+                    msgToast(resources.getString(R.string.validCodeSendFailure))
+                    t.printStackTrace()
+                }
+            })
         }
 
 
@@ -106,11 +125,13 @@ class ValidCode : BaseActivity() {
                     override fun afterTextChanged(s: Editable) {
                         //这里的方法才能正常触发
                         if (s.length==1){
-                            validCode2.focusable=View.FOCUSABLE
+                            validCode2.isFocusable=true
+//                            validCode2.focusable=View.FOCUSABLE
                             validCode2.isFocusableInTouchMode=true
                             validCode2.requestFocus()
                             validCode2.isCursorVisible=true
-                            validCode1.focusable=View.NOT_FOCUSABLE
+                            validCode1.isFocusable=false
+//                            validCode1.focusable=View.NOT_FOCUSABLE
                             validCode1.isCursorVisible=false
                             val value = (validCode1.text).toString().toInt()
                             userInput[0]=value
@@ -144,11 +165,13 @@ class ValidCode : BaseActivity() {
                 override fun afterTextChanged(s: Editable) {
                     //这里的方法才能正常触发
                     if (s.length==1){
-                        validCode3.focusable=View.FOCUSABLE
+                        validCode3.isFocusable=true
+//                        validCode3.focusable=View.FOCUSABLE
                         validCode3.isFocusableInTouchMode=true
                         validCode3.isCursorVisible=true
                         validCode3.requestFocus()
-                        validCode2.focusable=View.NOT_FOCUSABLE
+                        validCode2.isFocusable=false
+//                        validCode2.focusable=View.NOT_FOCUSABLE
                         validCode2.isCursorVisible=false
                         val value = (validCode2.text).toString().toInt()
                         userInput[1]=value
@@ -180,11 +203,11 @@ class ValidCode : BaseActivity() {
                 override fun afterTextChanged(s: Editable) {
                     //这里的方法才能正常触发
                     if (s.length==1){
-                        validCode4.focusable=View.FOCUSABLE
+                        validCode4.isFocusable=true
                         validCode4.isFocusableInTouchMode=true
                         validCode4.isCursorVisible=true
                         validCode4.requestFocus()
-                        validCode3.focusable=View.NOT_FOCUSABLE
+                        validCode3.isFocusable=false
                         validCode3.isCursorVisible=false
                         val value = (validCode3.text).toString().toInt()
                         userInput[2]=value
@@ -197,10 +220,10 @@ class ValidCode : BaseActivity() {
 
             if (keyCode == KeyEvent.KEYCODE_DEL) {
                 validCode1.setText("")
-                validCode1.focusable=View.FOCUSABLE
+                validCode1.isFocusable=true
                 validCode1.isFocusableInTouchMode=true
                 validCode1.isCursorVisible=true
-                validCode2.focusable=View.NOT_FOCUSABLE
+                validCode2.isFocusable=false
                 validCode2.isCursorVisible=false
                 validCode1.requestFocus()
 
@@ -214,12 +237,12 @@ class ValidCode : BaseActivity() {
             if (keyCode == KeyEvent.KEYCODE_DEL) {
                 validCode1.setText("")
                 validCode2.setText("")
-                validCode1.focusable=View.FOCUSABLE
+                validCode1.isFocusable=true
                 validCode1.isFocusableInTouchMode=true
                 validCode1.isCursorVisible=true
-                validCode2.focusable=View.NOT_FOCUSABLE
+                validCode2.isFocusable=false
                 validCode2.isCursorVisible=false
-                validCode3.focusable=View.NOT_FOCUSABLE
+                validCode3.isFocusable=false
                 validCode3.isCursorVisible=false
                 validCode1.requestFocus()
 
@@ -235,12 +258,12 @@ class ValidCode : BaseActivity() {
                     validCode2.setText("")
                     validCode3.setText("")
                     validCode4.setText("")
-                    validCode1.focusable=View.FOCUSABLE
+                    validCode1.isFocusable=true
                     validCode1.isFocusableInTouchMode=true
                     validCode1.isCursorVisible=true
-                    validCode2.focusable=View.NOT_FOCUSABLE
-                    validCode3.focusable=View.NOT_FOCUSABLE
-                    validCode4.focusable=View.NOT_FOCUSABLE
+                    validCode2.isFocusable=false
+                    validCode3.isFocusable=false
+                    validCode4.isFocusable=false
                     validCode2.isCursorVisible=false
                     validCode3.isCursorVisible=false
                     validCode4.isCursorVisible=false
@@ -281,25 +304,32 @@ class ValidCode : BaseActivity() {
                         val userinput:String ="${userInput[0]}${userInput[1]}${userInput[2]}${userInput[3]}"
 
 
-
                         val doLogin = ServiceCreator.create(DoLoginService::class.java)
                         doLogin.doLogin(phoneNumber,userinput,1).enqueue(object : Callback<VerificationCode> {
                             override fun onResponse(
                                 call: Call<VerificationCode>,
                                 response: Response<VerificationCode>
                             ) {
-                                val rentrunData = response.body()
+                                val cookie=SessionUtilTools.getSession(response.headers())
+                                Log.d("cookie",cookie)
+                                val editor = getSharedPreferences("cookie",Context.MODE_PRIVATE).edit()
+                                editor.putString("sessionId",cookie)
+                                editor.apply()
 
-                                Log.d("rentrunData",rentrunData.toString())
-                                Log.d("msg",rentrunData!!.msg)
-                                if(rentrunData!=null && rentrunData.msg=="success" ){
+                                val returnData = response.body()
+                                if(returnData!=null && returnData.msg=="success" ){
+                                        if(returnData!!.data.get("needPerfectDetail").toString() =="false") {
 
-                                    val intent = Intent(thisActivity,Sex::class.java)
-                                    startActivity(intent)
+                                            val intent = Intent(thisActivity,HomePage::class.java)
+                                            startActivity(intent)
+                                        }else{
+                                            val intent = Intent(thisActivity, Sex::class.java)
+                                            startActivity(intent)
+                                        }
 
-                                    progressBar.visibility=View.INVISIBLE
-                                    reGetValidCode.visibility=View.VISIBLE
-                                    startActivity(intent)
+                                    finish()
+//
+
 
                                 }
 
@@ -307,7 +337,7 @@ class ValidCode : BaseActivity() {
 
                             override fun onFailure(call: Call<VerificationCode>, t: Throwable) {
                                 t.printStackTrace()
-                                codeError()
+                                msgToast(resources.getString(R.string.validCodeError))
                             }
 
                         })
@@ -330,25 +360,26 @@ class ValidCode : BaseActivity() {
 
 
     }
-    private fun codeError(){
-        Log.d("aaaaaaaaaaaaa","waaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+    private fun msgToast(msg:String){
+
         val layout = layoutInflater.inflate(R.layout.custom_toast,linearLayout)
-        val myToast=Toast.makeText(thisActivity,resources.getString(R.string.validCodeError),Toast.LENGTH_LONG)
-
-
+        val myToast=Toast.makeText(thisActivity,msg,Toast.LENGTH_LONG)
+        layout.findViewById<TextView>(R.id.custom_toast_message).text=msg
         myToast.setGravity(Gravity.TOP,0, 200)
+
         myToast.view = layout//setting the view of custom toast layout
+
         myToast.show()
 
         validCode1.setText("")
         validCode2.setText("")
         validCode3.setText("")
         validCode4.setText("")
-        validCode1.focusable=View.FOCUSABLE
+        validCode1.isFocusable=true
         validCode1.isFocusableInTouchMode=true
-        validCode2.focusable=View.NOT_FOCUSABLE
-        validCode3.focusable=View.NOT_FOCUSABLE
-        validCode4.focusable=View.NOT_FOCUSABLE
+        validCode2.isFocusable=false
+        validCode3.isFocusable=false
+        validCode4.isFocusable=false
         validCode1.requestFocus()
         validCode1.isCursorVisible=true
         validCode2.isCursorVisible=false

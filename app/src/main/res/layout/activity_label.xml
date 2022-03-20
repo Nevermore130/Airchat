@@ -39,15 +39,15 @@
                 android:textSize="13sp"
                 android:textStyle="normal"/>
 
-            <TextView
-                android:id="@+id/skip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="323dp"
-                android:layout_marginTop="73dp"
-                android:text="跳过"
-                android:textColor="@color/gray888888"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="320dp"
+            android:layout_marginTop="73dp"
+            android:text="跳过"
+            android:textColor="@color/gray888888"
+            android:textSize="14sp" />
         </RelativeLayout>
 
     <LinearLayout

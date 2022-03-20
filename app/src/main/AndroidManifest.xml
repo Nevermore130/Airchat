@@ -5,20 +5,20 @@
 
     <queries>
         <intent>
-            <action android:name="android.media.action.IMAGE_CAPTURE"/>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
         </intent>
-
         <intent>
-            <action android:name="android.media.action.VIDEO_CAPTURE"/>
+            <action android:name="android.media.action.VIDEO_CAPTURE" />
         </intent>
     </queries>
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <permission android:name="android.permission.QUERY_ALL_PACKAGES" />
 
@@ -26,15 +26,28 @@
         android:name="android.hardware.camera"
         android:required="false"
         tools:remove="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_config"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:networkSecurityConfig="@xml/network_config"
-       >
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".StartActivity"
+            android:exported="true" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+        <activity
+            android:name=".HomePage"
+            android:exported="false" />
+
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="com.example.dengluzhuce"
@@ -45,7 +58,7 @@
                 android:resource="@xml/file_paths_public" />
         </provider>
 
-        <activity android:name=".protocol"></activity>
+        <activity android:name=".protocol" />
         <activity android:name=".privacy" />
         <activity
             android:name=".LifePhotoActivity"
@@ -60,19 +73,15 @@
         <activity
             android:name=".ValidCode"
             android:launchMode="singleTask" />
-
         <activity
             android:name=".Num_validation"
             android:launchMode="singleTask" />
         <activity
             android:name=".MainActivity"
-            android:launchMode="singleTask">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:exported="true"
+            android:launchMode="singleTask"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
     </application>
 
 </manifest>

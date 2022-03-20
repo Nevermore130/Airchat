@@ -5,19 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-    <LinearLayout
+    <TextView
+        android:id="@+id/skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/back_button"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="73dp"
+        android:text="跳过"
+        android:textColor="@color/gray888888"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/back_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_marginLeft="14dp"
         android:layout_marginTop="68dp"
-        android:background="@drawable/back_button">
-        <Button
-            android:id="@+id/back_button"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:background="@drawable/back"
-            />
-    </LinearLayout>
+        android:background="@drawable/back" />
     <TextView
         android:layout_width="144dp"
         android:layout_height="34dp"
@@ -37,25 +42,44 @@
         android:textColor="#888888"
         android:textSize="13sp"
         android:textStyle="normal"/>
+<LinearLayout
+    android:layout_width="318dp"
+    android:layout_height="100dp"
+    android:layout_marginLeft="32dp"
+    android:layout_marginTop="282dp">
 
     <ImageView
-        android:id="@+id/imageSelect"
+        android:id="@+id/imageSelect1"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="282dp"
         android:background="@drawable/add1" />
+    <ImageView
+        android:id="@+id/imageSelect2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="6dp"
+        android:background="@drawable/add1"
+        android:visibility="invisible"/>
+    <ImageView
+        android:id="@+id/imageSelect3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginLeft="6dp"
+        android:background="@drawable/add1"
+        android:visibility="invisible"/>
+</LinearLayout>
+
     <Button
         android:id="@+id/buttonOfLogin"
         android:layout_width="285dp"
         android:layout_height="48dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="550dp"
-        android:fontFamily=""
-        android:enabled="false"
         android:background="@drawable/button_shape2"
+        android:enabled="false"
+        android:fontFamily=""
+        android:gravity="center"
         android:text="进入AirChat"
         android:textColor="@color/black"
-        android:textSize="16sp"
-        android:gravity="center"/>
+        android:textSize="16sp" />
 </RelativeLayout>
