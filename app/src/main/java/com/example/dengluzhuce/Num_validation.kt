@@ -1,29 +1,23 @@
 package com.example.dengluzhuce
 
+import android.content.Context
 import android.content.Intent
-
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.MotionEvent
 import android.view.View
-
-import androidx.annotation.CallSuper
-
+import android.view.inputmethod.InputMethodManager
 import kotlinx.android.synthetic.main.activity_num_validation.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import java.util.*
 
 class Num_validation : BaseActivity() {
     private var phoneNumber:String?=null
+    private val thisActivity = this
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_num_validation)
 
-        val thisActivity = this
+        showKeyboard(inputText)
         clearButton.setOnClickListener {
             inputText.setText("")
         }
@@ -64,7 +58,7 @@ class Num_validation : BaseActivity() {
                             val intent = Intent(thisActivity, ValidCode::class.java)
                             val phoneNum = inputText.text.toString()
 
-                            intent.putExtra("phoneNum",phoneNum)
+                            intent.putExtra("phoneNum", phoneNum)
                             startActivity(intent)
                         }
                     }
@@ -82,7 +76,21 @@ class Num_validation : BaseActivity() {
             startActivity(intent)
         }
     }
-
+private fun showKeyboard(view: View){
+    view.requestFocus()
+    val timer = Timer()
+    timer.schedule(
+        object : TimerTask() {
+            override fun run() {
+                val inputManager = view.getContext()
+                    .getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                inputManager.showSoftInput(view, 0)
+            }
+        },
+        300
+    )
 }
+}
+
 
 

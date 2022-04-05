@@ -14,6 +14,7 @@ import androidx.annotation.CallSuper
 import kotlinx.android.synthetic.main.activity_valid_code.*
 import android.view.Gravity
 import android.view.KeyEvent
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
 import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_num_validation.*
@@ -24,6 +25,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 
 class ValidCode : BaseActivity() {
@@ -36,8 +38,7 @@ class ValidCode : BaseActivity() {
 
         val mContext = thisActivity.baseContext
 
-        val editText : EditText =findViewById(R.id.validCode1)
-        editText.requestFocus()
+
 
         val phoneNumber  = intent.getStringExtra("phoneNum").toString()
 
@@ -59,7 +60,8 @@ class ValidCode : BaseActivity() {
                 t.printStackTrace()
             }
         })
-
+        val editText : EditText =findViewById(R.id.validCode1)
+        showKeyboard(editText)
         var userInput:IntArray= intArrayOf(-1,-1,-1,-1)
         back_button.setOnClickListener {
 
@@ -97,6 +99,7 @@ class ValidCode : BaseActivity() {
                     t.printStackTrace()
                 }
             })
+            showKeyboard(editText)
         }
 
 
@@ -310,8 +313,9 @@ class ValidCode : BaseActivity() {
                                 call: Call<VerificationCode>,
                                 response: Response<VerificationCode>
                             ) {
+                                Log.d("+++++++++++++++++","成功获取响应")
                                 val cookie=SessionUtilTools.getSession(response.headers())
-                                Log.d("cookie",cookie)
+                                Log.d("test_cookie",cookie)
                                 val editor = getSharedPreferences("cookie",Context.MODE_PRIVATE).edit()
                                 editor.putString("sessionId",cookie)
                                 editor.apply()
@@ -388,5 +392,18 @@ class ValidCode : BaseActivity() {
         progressBar.visibility=View.INVISIBLE
         reGetValidCode.visibility=View.VISIBLE
     }
-
+    private fun showKeyboard(view: View){
+        view.requestFocus()
+        val timer = Timer()
+        timer.schedule(
+            object : TimerTask() {
+                override fun run() {
+                    val inputManager = view.getContext()
+                        .getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                    inputManager.showSoftInput(view, 0)
+                }
+            },
+            300
+        )
+    }
 }

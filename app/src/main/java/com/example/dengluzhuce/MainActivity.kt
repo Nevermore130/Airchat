@@ -112,14 +112,14 @@ class MainActivity : BaseActivity() {
 
     override fun onResume() {
         super.onResume()
-
+        buttonOfLogin.isClickable=true
         buttonOfLogin.setOnClickListener {
-
+            buttonOfLogin.isClickable=false
             mPermissionsChecker = PermissionChecker(activity)
             if (!mPermissionsChecker!!.lacksPermissions(permissionListTmp)) {
 
                 val intent = Intent(activity, Num_validation::class.java)
-//                val intent = Intent(activity, LifePhotoActivity::class.java)
+//                val intent = Intent(activity, UserName::class.java)
                 startActivity(intent)
             } else {
                 // 缺少权限时, 进入权限配置页面

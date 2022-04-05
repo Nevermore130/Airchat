@@ -31,10 +31,10 @@ class Label : BaseActivity() {
         listOf(mListGrade, mListSkin, mListHaircut, mListFigure, mListAdornment)
 
 //    private val userSex: String = intent.getStringExtra("userSex").toString()
-    private val userSex="boy"
-    private val femaleGrade = listOf("大一", "大二", "大三", "大四", "读研中", "已毕业")
-    private val femaleSkin = listOf("正常", "黑", "偏黑", " 白", " 偏白", "亚洲黄")
-    private val femaleHaircut = listOf(
+    private var bundle=Bundle()
+    private val maleGrade = listOf("大一", "大二", "大三", "大四", "读研中", "已毕业")
+    private val maleSkin = listOf("正常", "黑", "偏黑", "白", " 偏白", "亚洲黄")
+    private val maleHaircut = listOf(
         "都不是",
         "寸头自来卷",
         "卷刘海",
@@ -51,12 +51,12 @@ class Label : BaseActivity() {
         "黄发色",
         "稀缺发色"
     )
-    private val femaleFigure = listOf("都不是", "精壮", "很高", "正常", "微胖", "瘦高", "偏瘦", "高壮")
-    private val femaleAdornment = listOf("都没有", "戴眼镜", "有手表", "有耳钉", "有项链", "有纹身", "戴帽子", "戴口罩")
+    private val maleFigure = listOf("都不是", "精壮", "很高", "正常", "微胖", "瘦高", "偏瘦", "高壮")
+    private val maleAdornment = listOf("都没有", "戴眼镜", "有手表", "有耳钉", "有项链", "有纹身", "戴帽子", "戴口罩")
 
-    private val maleGrade = listOf("大一", "大二", "大三", "大四", "读研中", "已毕业")
-    private val maleSkin = listOf("正常", "不白", "白的发光", " 白白哒", " 偏白", " 亚洲黄")
-    private val maleHaircut = listOf(
+    private val femaleGrade = listOf("大一", "大二", "大三", "大四", "读研中", "已毕业")
+    private val femaleSkin = listOf("正常", "不白", "白的发光", "白白哒", "偏白", "亚洲黄")
+    private val femaleHaircut = listOf(
         "都不是",
         "烫过卷",
         "短发",
@@ -72,8 +72,8 @@ class Label : BaseActivity() {
         "黄发色",
         "稀缺发色"
     )
-    private val maleFigure = listOf("都不是", "偏瘦", "偏高", "正常", "很高", "微胖", "瘦高")
-    private val maleAdornment = listOf("都没有", "戴眼镜", "有手表", "有耳钉", "有项链", "有纹身", "戴帽子", "戴口罩")
+    private val femaleFigure = listOf("都不是", "偏瘦", "偏高", "正常", "很高", "微胖", "瘦高")
+    private val femaleAdornment = listOf("都没有", "戴眼镜", "有手表", "有耳钉", "有项链", "有纹身", "戴帽子", "戴口罩")
 
     private val maleLabel = listOf(maleGrade, maleSkin, maleHaircut, maleFigure, maleAdornment)
     private val femaleLabel =
@@ -89,7 +89,7 @@ class Label : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        bundle = intent.getBundleExtra("bundle")!!
 
         setContentView(R.layout.activity_label)
         mFlowLayout1 = findViewById<FlowLayout>(R.id.flow1)
@@ -99,7 +99,7 @@ class Label : BaseActivity() {
         mFlowLayout5 = findViewById<FlowLayout>(R.id.flow5)
         mFlowLayoutList =
             listOf(mFlowLayout1!!, mFlowLayout2!!, mFlowLayout3!!, mFlowLayout4!!, mFlowLayout5!!)
-        if (userSex == "male") {
+        if (bundle.getInt("gender",-1)==0) {
             labelList = maleLabel
         } else {
             labelList = femaleLabel
@@ -113,6 +113,8 @@ class Label : BaseActivity() {
 
                 override fun onClick(v: View) {
                     val intent = Intent(thisActivity, LifePhotoActivity::class.java)
+                    bundle.putString("tagIds","")
+                    intent.putExtra("bundle",bundle)
                     startActivity(intent)
                 }
 
@@ -140,10 +142,11 @@ class Label : BaseActivity() {
         skip.setText(spanable)
         getIdMap()
         goOnButton.setOnClickListener {
-
-            val idString=setId()
+            goOnButton.isClickable=false
+            bundle.putString("tagIds",setId())
             val intent = Intent(thisActivity,LifePhotoActivity::class.java)
-            intent.putExtra("idString",idString)
+            intent.putExtra("bundle",bundle)
+            Log.d("test_bundle",bundle.toString())
             startActivity(intent)
         }
 
@@ -313,6 +316,7 @@ class Label : BaseActivity() {
 
     }
     private fun setId():String{
+        idList= arrayListOf()
         for (item in contentList!!){
 
             if(idMap!![item]!=null) { idList!!.add(idMap!![item]!!)
@@ -321,6 +325,11 @@ class Label : BaseActivity() {
         }
 
      return idList.toString().replace("[","").replace("]","").replace(" ","")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        goOnButton.isClickable=true
     }
     }
 

@@ -16,6 +16,7 @@ class StartActivity : BaseActivity() {
     private fun keepLogin() {
         val prefs = getSharedPreferences("cookie", Context.MODE_PRIVATE)
         val sessionId = prefs.getString("sessionId", "")
+        Log.d("test_cookie",sessionId.toString())
         if (sessionId != "") {
 
         val getUserInformationService = ServiceCreator.create(GetUserInformationService::class.java)
@@ -31,6 +32,11 @@ class StartActivity : BaseActivity() {
                             val intent = Intent(this@StartActivity,HomePage::class.java)
                             startActivity(intent)
 
+                        }
+                        else{
+                            Log.d("bbbbbbb","bbbbbbbbb")
+                            val intent = Intent(this@StartActivity,MainActivity::class.java)
+                            startActivity(intent)
                         }
                     }
 

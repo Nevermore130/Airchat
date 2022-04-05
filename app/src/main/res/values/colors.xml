@@ -27,4 +27,6 @@
     <color name="color8888888">#888888</color>
     <color name="color222222">#222222</color>
     <color name="label_check">#000000</color>
+    <color name="colorffc600">#ffc600</color>
+    <color name="transparent80">#4de5e5e5</color>
 </resources>

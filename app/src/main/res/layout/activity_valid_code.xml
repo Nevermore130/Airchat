@@ -50,6 +50,8 @@
         />
 
     <EditText
+        android:focusable="true"
+        android:focusableInTouchMode="true"
         android:id="@+id/validCode1"
         android:layout_width="56dp"
         android:layout_height="56dp"
@@ -57,13 +59,12 @@
         android:layout_marginTop="264dp"
         android:background="@drawable/validcode_background"
         android:gravity="center"
-        android:textCursorDrawable="@drawable/cursor_shape"
-        android:maxLength="1"
-        android:textStyle="normal"
-        android:textSize="20sp"
-        android:textColor="@color/validnum"
         android:inputType="number"
-        />
+        android:maxLength="1"
+        android:textColor="@color/validnum"
+        android:textCursorDrawable="@drawable/cursor_shape"
+        android:textSize="20sp"
+        android:textStyle="normal" />
 
 
     <EditText

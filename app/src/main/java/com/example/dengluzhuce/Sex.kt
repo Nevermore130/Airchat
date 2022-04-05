@@ -9,7 +9,7 @@ import android.widget.RadioGroup
 import kotlinx.android.synthetic.main.activity_sex.*
 
 class Sex : BaseActivity() {
-    private var userSex:String?=null
+    private var userSex:Int?=null
     @Suppress("DEPRECATION")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,14 +22,14 @@ class Sex : BaseActivity() {
             nextTip.background=resources.getDrawable(R.drawable.button_selector)
             nextTip.setTextColor(resources.getColor(R.color.white))
             val checkedButton = radioGroup.findViewById(i) as RadioButton
-            if(checkedButton.text.toString()=="我是男生"){userSex="boy"}
-            else{userSex="girl"}
+            if(checkedButton.text.toString()=="我是男生"){userSex=0}
+            else{userSex=1}
 
         })
 
         nextTip.setOnClickListener {
             val intent = Intent(this,UserName::class.java)
-            Log.d("userSex",userSex!!)
+
             intent.putExtra("userSex",userSex)
             startActivity(intent)
         }

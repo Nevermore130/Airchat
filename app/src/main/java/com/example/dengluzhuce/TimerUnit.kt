@@ -6,7 +6,7 @@ import android.widget.TextView
 
 @Suppress("DEPRECATION")
 class TimerUnit(private val textView: TextView,mContext :Context) : Handler() {
-    private var defaultTime = 30
+    private var defaultTime = 60
     private var time = defaultTime
     private var isShowEndText = true
     private var mContext = mContext

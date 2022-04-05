@@ -75,4 +75,5 @@
         android:text="去选头像"
         android:textColor="#C1C1C1"
         android:textSize="16sp" />
+
 </RelativeLayout>
