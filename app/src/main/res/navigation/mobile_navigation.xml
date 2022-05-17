@@ -1,0 +1,21 @@
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_chat">
+    <fragment
+        android:id="@+id/navigation_chat"
+        android:name="com.example.dengluzhuce.fragments.ChatFragment"
+        android:label="1111"
+        tools:layout="@layout/fragment_chat"/>
+    <fragment
+        android:id="@+id/navigation_detect"
+        android:name="com.example.dengluzhuce.fragments.DetectFragment"
+        android:label="2222"
+        tools:layout="@layout/fragment_detect" />
+    <fragment
+        android:id="@+id/navigation_daily"
+        android:name="com.example.dengluzhuce.fragments.DailyFragment"
+        android:label="3333"
+        tools:layout="@layout/fragment_daily" />
+</navigation>

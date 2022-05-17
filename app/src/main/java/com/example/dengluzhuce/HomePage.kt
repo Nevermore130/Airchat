@@ -1,121 +1,91 @@
 package com.example.dengluzhuce
-
-import android.content.Context
-import android.content.Intent
-import android.graphics.BitmapFactory
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Message
-import android.util.Log
-import android.view.Gravity
-import android.widget.TextView
-import android.widget.Toast
-import com.airchat.matisse.AirChatPhoto
-import com.airchat.matisse.AirPhotoSelectListener
-import com.alibaba.sdk.android.oss.ClientException
-import com.alibaba.sdk.android.oss.OSSClient
-import com.alibaba.sdk.android.oss.ServiceException
-import com.alibaba.sdk.android.oss.callback.OSSCompletedCallback
-import com.alibaba.sdk.android.oss.common.auth.OSSStsTokenCredentialProvider
-import com.alibaba.sdk.android.oss.internal.OSSAsyncTask
-import com.alibaba.sdk.android.oss.model.PutObjectRequest
-import com.alibaba.sdk.android.oss.model.PutObjectResult
-import kotlinx.android.synthetic.main.activity_home_page.*
-import kotlinx.android.synthetic.main.custom_toast.*
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import java.util.function.LongFunction
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
+import com.example.dengluzhuce.fragments.ChatFragment
+import com.example.dengluzhuce.fragments.DailyFragment
+import com.example.dengluzhuce.fragments.DetectFragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
+
 
 
 class HomePage : BaseActivity() {
     private val thisActivity=this
-    private val updateData = 1
-    private var mdetails : MutableList<String>?= arrayListOf()
-    private val endPoint = "oss-cn-beijing.aliyuncs.com"
-    private val bucketName = "box-get-public-photos"
-    private val key = "airchat"
-
+    private var rb_chat : RadioButton? = null
+    private var rb_detect : RadioButton? = null
+    private var rb_daily : RadioButton? = null
+    private var rg_group : RadioGroup? = null
+    private var fragments: MutableList<Fragment> = arrayListOf()
+    private var position : Int = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_home_page)
-        val prefs = getSharedPreferences("cookie", Context.MODE_PRIVATE)
-        val sessionId = prefs.getString("sessionId", "")
+        rb_chat = findViewById(R.id.rb_chat)
+        rb_detect=findViewById(R.id.rb_detect)
+        rb_daily=findViewById(R.id.rb_daily)
+
+        rg_group=findViewById(R.id.rg_group);
+        rb_chat!!.setSelected(true);
+        rg_group!!.setOnCheckedChangeListener(RadioGroup.OnCheckedChangeListener { radioGroup, i ->  
+            val fragmentManager : FragmentManager  = supportFragmentManager
+            val transaction: FragmentTransaction = fragmentManager.beginTransaction()
+            if(i == R.id.rb_chat){
+                position=0
+                transaction.replace(R.id.fragment_layout,fragments.get(position))
+                setSelected()
+                rb_chat!!.setSelected(true);
+
+            }
+            else if (i == R.id.rb_detect){
+                position=1
+                transaction.replace(R.id.fragment_layout,fragments.get(position))
+                setSelected()
+                rb_detect!!.setSelected(true);
+            }
+            else{
+                position=2
+                transaction.replace(R.id.fragment_layout,fragments.get(position))
+                setSelected()
+                rb_daily!!.setSelected(true);
+            }
+            transaction.commit()
+        })
+
+        //初始化fragment
+        initFragment()
+
+        //默认布局，选第一个
+        defaultFragment()
 
 
-
-
-
-
-
-
-
-
-        button1.setOnClickListener {
-            val getUserInformationService = ServiceCreator.create(GetUserInformationService::class.java)
-            getUserInformationService.getUserInformation(sessionId!!).enqueue(object :
-                Callback<GetUserInformationReturn> {
-                override fun onResponse(
-                    call: Call<GetUserInformationReturn>,
-                    response: Response<GetUserInformationReturn>
-                ) {
-                    val returnData = response.body()
-                    Log.d("aaaaa","aaaaaaaaaaaaaa")
-                    if(returnData!=null && returnData.msg=="success")
-                    {
-                        val data= returnData.data.getAsJsonObject("detail")
-                        val name = data.get("nickname").toString().replace("\"","")
-                        msgToast(name)
-
-                    }
-                }
-
-                override fun onFailure(call: Call<GetUserInformationReturn>, t: Throwable) {
-                    t.printStackTrace()
-                    msgToast("获取名称失败")
-
-                }
-
-            })
         }
-        button2.setOnClickListener {
-            val logoutService = ServiceCreator.create(LogoutService::class.java)
-            logoutService.logout(sessionId!!).enqueue(object :Callback<LogoutReturn>{
-                override fun onResponse(
-                    call: Call<LogoutReturn>,
-                    response: Response<LogoutReturn>
-                ) {
-                    Log.d("test2222222","22222")
-                    val intent = Intent(thisActivity,MainActivity::class.java)
-                    startActivity(intent)
-                }
+    private fun initFragment() {
 
-                override fun onFailure(call: Call<LogoutReturn>, t: Throwable) {
-                    t.printStackTrace()
-                    Log.d("test111111111","111111")
-                    msgToast("注销登录失败")
-                }
-            })
-        }
+      fragments.add(ChatFragment())
+        fragments.add(DetectFragment())
+        fragments.add(DailyFragment())
     }
-    private fun msgToast(msg:String) {
+    private fun defaultFragment(){
+        val fragmentManager : FragmentManager = supportFragmentManager
+        val transaction : FragmentTransaction = fragmentManager.beginTransaction()
+        transaction.replace(R.id.fragment_layout,fragments.get(0))
+        transaction.commit()
+    }
+    private fun setSelected() {
+        rb_chat!!.setSelected(false)
+        rb_detect!!.setSelected(false)
+        rb_daily!!.setSelected(false)
 
-        val layout = layoutInflater.inflate(R.layout.custom_toast, linearLayout)
-        val myToast = Toast.makeText(thisActivity, msg, Toast.LENGTH_SHORT)
-        layout.findViewById<TextView>(R.id.custom_toast_message).text = msg
-        myToast.setGravity(Gravity.TOP, 0, 200)
-
-        myToast.view = layout//setting the view of custom toast layout
-
-        myToast.show()
     }
 
 
+    }
 
-
-
-
-}
