@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/userImage"
+        app:shapeAppearanceOverlay="@style/circleImageStyle"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="16dp"
+
+        android:src="@drawable/boy" />
+    <TextView
+        android:id="@+id/userName"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:text="昵称最多支持几个字？"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:layout_marginTop="17dp"
+        android:layout_toRightOf="@id/userImage"
+        android:layout_marginLeft="10dp"/>
+    <ImageView
+        android:id="@+id/sex_image"
+        android:layout_width="13dp"
+        android:layout_height="13dp"
+        android:src="@drawable/sex_boy"
+        android:layout_marginTop="22dp"
+        android:layout_toRightOf="@id/userName"
+        android:layout_marginLeft="4.66dp"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:background="@drawable/chat"/>
+</RelativeLayout>
