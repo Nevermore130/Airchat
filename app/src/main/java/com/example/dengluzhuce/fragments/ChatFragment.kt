@@ -8,8 +8,11 @@ import com.example.dengluzhuce.R
 import com.hyphenate.EMValueCallBack
 import com.hyphenate.chat.EMClient
 import com.hyphenate.chat.EMConversation
+import com.hyphenate.easeui.EaseIM
+import com.hyphenate.easeui.domain.EaseUser
 import com.hyphenate.easeui.modules.conversation.EaseConversationListFragment
 import com.hyphenate.easeui.modules.conversation.model.EaseConversationInfo
+import com.hyphenate.easeui.provider.EaseUserProfileProvider
 
 class ChatFragment : EaseConversationListFragment() {
     private val TAG: String = "ChatFragment"
@@ -20,6 +23,14 @@ class ChatFragment : EaseConversationListFragment() {
         val view: View = LayoutInflater.from(mContext).inflate(R.layout.fragment_chat, null)
         llRoot.addView(view, 0)
         conversationListLayout.listAdapter.emptyLayoutId = R.layout.ease_layout_default_no_data
+        EaseIM.getInstance().userProvider = EaseUserProfileProvider {
+            //TODO 在这里通过userId 去获取我们自己用的信息，然后赋值给EaseUser对象
+
+            val easeUser = EaseUser()
+            easeUser.avatar = "" //头像
+            easeUser.nickname = "" //昵称
+            easeUser
+        }
     }
 
     override fun initData() {
