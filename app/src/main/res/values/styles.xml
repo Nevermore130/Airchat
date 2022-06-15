@@ -3,7 +3,6 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" >
 
-        <item name="android:fitsSystemWindows">true</item>
     </style>
     <style name="AppTheme_Light" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="color">#E2B000</item>
@@ -21,5 +20,62 @@
     <style name="circleImageStyle">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
+    </style>
+<!--    私聊-->
+    <style name="contract_textView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/user_button_shape</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">17dp</item>
+        <item name="android:text">私聊</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+<!--    已添加-->
+    <style name="added_textView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/user_button_shape2</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">17dp</item>
+        <item name="android:text">已添加</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+<!--    +通讯录-->
+    <style name="add_textView">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/user_button_shape3</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginTop">17dp</item>
+        <item name="android:text">通讯录</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">13sp</item>
+
+        <item name="android:drawableLeft">@drawable/add_image3</item>
+        <item name="android:drawablePadding">5dp</item>
+        <item name="android:paddingLeft">10dp</item>
+    </style>
+<!--    用户标签-->
+    <style name="label">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/user_label_shape</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
+    </style>
+<!--    生活照-->
+    <style name="user_lifePhoto">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">6dp</item>
     </style>
 </resources>

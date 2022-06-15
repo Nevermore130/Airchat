@@ -1,57 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
     <FrameLayout
+        app:layout_constraintBottom_toTopOf="@id/rg_group"
+        app:layout_constraintTop_toTopOf="parent"
         android:id="@+id/fragment_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
-        />
+        android:layout_height="0dp" />
 
     <RadioGroup
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:id="@+id/rg_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        >
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
         <RadioButton
             android:id="@+id/rb_chat"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            style="@style/fragment"
             android:drawableTop="@drawable/chat_selector"
+            android:gravity="center"
             android:stateListAnimator="@null"
+            android:text="聊天"
+            android:textColor="@color/chat_text_selector"
+            android:textSize="9sp" />
 
-            />
         <RadioButton
             android:id="@+id/rb_detect"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            style="@style/fragment"
             android:drawableTop="@drawable/detect_selector"
+            android:gravity="center"
             android:stateListAnimator="@null"
-            />
+            android:text="探测"
+            android:textColor="@color/chat_text_selector"
+            android:textSize="9sp" />
+
         <RadioButton
             android:id="@+id/rb_daily"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:button="@null"
-            style="@style/fragment"
             android:drawableTop="@drawable/daily_selector"
+            android:gravity="center"
             android:stateListAnimator="@null"
-
-            />
+            android:text="日常"
+            android:textColor="@color/chat_text_selector"
+            android:textSize="9sp" />
 
     </RadioGroup>
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

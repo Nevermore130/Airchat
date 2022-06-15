@@ -1,8 +1,18 @@
-<resources>
-    <string name="app_name" translatable="false">dengluzhuce</string>
+<resources translatable="false">
+    <string name="app_name" translatable="false">AirChat</string>
     <string name="validCodeError" translatable="false">验证码错误</string>
     <string name="validCodeSendSuccess" translatable="false">验证码发送成功</string>
     <string name="validCodeSendFailure" translatable="false">验证码发送失败</string>
     <string name="goon" translatable="false">继续</string>
+
+
+
+    <string name="demo_contact_listener_onContactAdded">您已经添加%1$s为好友</string>
+    <string name="demo_contact_listener_onContactDeleted">您已删除好友%1$s</string>
+    <string name="demo_contact_listener_onContactDeleted_by_other">%1$s已与您解除好友关系</string>
+    <string name="demo_contact_listener_onContactInvited">%1$s希望和您成为好友，请通过</string>
+    <string name="demo_contact_listener_onFriendRequestAccepted">您的好友申请已经通过</string>
+    <string name="demo_contact_listener_onFriendRequestDeclined">%1$s已拒绝您的好友申请</string>
+    <string name="emojicon_test_name">示例</string>
 
 </resources>

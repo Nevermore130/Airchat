@@ -29,4 +29,10 @@
     <color name="label_check">#000000</color>
     <color name="colorffc600">#ffc600</color>
     <color name="transparent80">#4de5e5e5</color>
+    <color name="colorffe037">#ffe037</color>
+    <color name="colord8d8d8">#d8d8d8</color>
+    <color name="colorf8f8f8">#f8f8f8</color>
+    <color name="colorededed">#ededed</color>
+    <color name="state_circle_color_green">#14EB90</color>
+    <color name="state_text_color">#ACACAC</color>
 </resources>

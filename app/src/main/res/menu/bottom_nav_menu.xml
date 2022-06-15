@@ -5,7 +5,7 @@
         android:title="1111" />
     <item
         android:id="@+id/navigation_detect"
-        android:icon="@drawable/detect_off"
+        android:icon="@drawable/detect_on"
         android:title="2222" />
     <item
         android:id="@+id/navigation_daily"

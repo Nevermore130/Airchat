@@ -9,11 +9,23 @@ import android.view.ViewGroup
 import com.example.dengluzhuce.ContractActivity
 
 import com.example.dengluzhuce.R
+import com.example.dengluzhuce.VisitorActivity
 import kotlinx.android.synthetic.main.fragment_chat.*
+import kotlinx.android.synthetic.main.fragment_daily.*
 
 class DailyFragment : Fragment() {
 
 
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        seeMe.setOnClickListener {
+            val intent = Intent(activity,VisitorActivity::class.java)
+            startActivity(intent)
+        }
+
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -21,10 +33,8 @@ class DailyFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_daily,container,false)
-        contract.setOnClickListener{
-            val intent = Intent(activity,ContractActivity::class.java)
-            startActivity(intent)
-        }
+
     }
+
 
 }
