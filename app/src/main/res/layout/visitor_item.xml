@@ -49,6 +49,7 @@
         android:orientation="horizontal">
 
         <TextView
+
             style="@style/label"
             android:text="大二学霸" />
     </LinearLayout>
@@ -57,7 +58,8 @@
         android:layout_width="match_parent"
         android:layout_height="88dp"
         android:layout_below="@id/userLabel"
-        android:layout_alignLeft="@id/userName">
+        android:layout_alignLeft="@id/userName"
+        android:layout_marginTop="12dp">
         <com.google.android.material.imageview.ShapeableImageView
             android:src="@drawable/boy"
             android:layout_width="88dp"
@@ -72,6 +74,7 @@
         android:layout_height="16dp"
         android:layout_below="@id/user_lifePhoto"
         android:layout_alignLeft="@id/user_lifePhoto"
+        android:layout_marginTop="8dp"
         android:drawableLeft="@drawable/state_circle_shape"
         android:drawablePadding="8dp"
         android:gravity="center_vertical"

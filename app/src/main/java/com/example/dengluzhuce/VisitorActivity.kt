@@ -5,10 +5,13 @@ import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.TypedValue
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
+import com.google.android.material.imageview.ShapeableImageView
 import kotlinx.android.synthetic.main.activity_visitor.*
 
 class VisitorActivity : AppCompatActivity() {
@@ -16,23 +19,26 @@ class VisitorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_visitor)
-        val linearLayout:LinearLayout = findViewById(R.id.userLabel)
+        val relativeLayout:RelativeLayout = findViewById(R.id.user_lifePhoto)
 
 
 
         val textlist: List<String> = listOf("大二学霸","小个子","微胖yyds")
-            for (text in textlist){
+            for (i in 0 until 3 ){
 
-                val tv: TextView = LayoutInflater.from(thisActivity).inflate(
-                    R.layout.user_label,
-                    linearLayout,
+                val iv: ShapeableImageView = LayoutInflater.from(thisActivity).inflate(
+                    R.layout.user_life_photo,
+                    relativeLayout,
                     false
-                ) as TextView
-                tv.text=text
-                val lp=tv.layoutParams as LinearLayout.LayoutParams
-                lp.setMargins(dp2px(4),0,0,0)
-                tv.layoutParams=lp
-                linearLayout.addView(tv)
+                ) as ShapeableImageView
+                iv.setImageResource(R.drawable.boy)
+                val lp=iv.layoutParams as RelativeLayout.LayoutParams
+                lp.setMargins(0,dp2px(5),dp2px((i+1)*8+i*30),dp2px(5))
+                lp.width=dp2px(30)
+                lp.height=dp2px(30)
+                lp.addRule(RelativeLayout.ALIGN_PARENT_RIGHT, RelativeLayout.TRUE)
+                iv.layoutParams=lp
+                relativeLayout.addView(iv)
             }
     }
     private fun dp2px(dp: Int): Int {

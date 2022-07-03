@@ -34,13 +34,25 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/toolbar"/>
 
-    <LinearLayout
-        android:id="@+id/userLabel"
+    <RelativeLayout
+        android:id="@+id/user_lifePhoto"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="7dp"
-        android:orientation="horizontal">
+        android:layout_height="40dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginRight="16dp"
+        android:background="@color/colorf8f8f8"
+        >
 
-    </LinearLayout>
+        <TextView
+            android:id="@+id/numOfLifePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="10dp"
+            android:gravity="center_vertical"
+            android:text="几张生活照"
+            android:textColor="@color/state_text_color"
+            android:textSize="11sp" />
+
+
+    </RelativeLayout>
 </RelativeLayout>
